@@ -4,6 +4,9 @@ import org.openthinclient.web.pkgmngr.ui.design.PackageManagerMainDesign;
 
 import com.vaadin.ui.Component;
 
+/**
+ * PackageManagerMainView
+ */
 public class PackageManagerMainView extends PackageManagerMainDesign {
 
   /** serialVersionUID */
