@@ -155,8 +155,13 @@ public class InstallationPlanSummaryDialogTest extends VerticalLayout implements
           // TODO Auto-generated method stub
           return null;
         }
-        
-        @Override
+
+          @Override
+          public Collection<Package> getAllInstallablePackages() {
+              return null;
+          }
+
+          @Override
         public long getFreeDiskSpace() throws PackageManagerException {
           // TODO Auto-generated method stub
           return 0;
