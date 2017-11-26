@@ -118,7 +118,7 @@ public class PackageManagerMainNavigatorView extends Panel implements View {
 
   @Override
   public void enter(ViewChangeListener.ViewChangeEvent event) {
-    bindPackageList(this.availablePackagesPresenter, packageManager::getInstallablePackagesWithoutInstalledOfSameVersion);
+    bindPackageList(this.availablePackagesPresenter, packageManager::getInstallablePackages);
     bindPackageList(this.installedPackagesPresenter, packageManager::getInstalledPackages);
     bindPackageList(this.updateablePackagesPresenter, packageManager::getUpdateablePackages);
   }

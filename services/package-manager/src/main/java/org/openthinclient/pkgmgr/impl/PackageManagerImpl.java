@@ -98,10 +98,15 @@ public class PackageManagerImpl implements PackageManager {
 		return delegate.getInstallablePackages();
 	}
 
-	/*
-	 * 
-	 * @see org.openthinclient.pkgmgr.PackageManager#findByInstalledTrue()
-	 */
+    @Override
+    public Collection<Package> getAllInstallablePackages() {
+        return delegate.getAllInstallablePackages();
+    }
+
+    /*
+     *
+     * @see org.openthinclient.pkgmgr.PackageManager#findByInstalledTrue()
+     */
 	public Collection<Package> getInstalledPackages() {
 		return delegate.getInstalledPackages();
 	}

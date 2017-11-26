@@ -58,10 +58,15 @@ public interface PackageManager {
     long getFreeDiskSpace() throws PackageManagerException;
 
     /**
-     * Returns a list of installable {@linkplain Package}s with flags: installed1=false and status=ENABLED
+     * Returns a list of installable {@linkplain Package}s with flags: installed1=false and status=ENABLED, but withou installed packages filtered by name
      * @return a collection of packages which could be installed
      */
     Collection<Package> getInstallablePackages() throws PackageManagerException;
+
+    /**
+     * @return all installable Packages
+     */
+    Collection<Package> getAllInstallablePackages();
 
     /**
      * close the different databases which the packagemanger uses

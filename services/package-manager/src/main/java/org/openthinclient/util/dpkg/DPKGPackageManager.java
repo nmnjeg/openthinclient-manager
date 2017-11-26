@@ -148,9 +148,14 @@ public class DPKGPackageManager implements PackageManager {
 
     /**
      * {@inheritDoc}
+     * Returns installable packages filtered by name, may contain any version of package
      */
     public Collection<Package> getInstallablePackages() {
-        return packageManagerDatabase.getPackageRepository().findInstallablePackages();
+        final List<String> installedPackageNames = getInstalledPackages().stream().map(Package::getName).collect(Collectors.toList());
+        return packageManagerDatabase.getPackageRepository().findInstallablePackages() //
+                .stream() //
+                .filter(pkg -> !installedPackageNames.contains(pkg.getName())) //
+                .collect(Collectors.toList());
     }
 
     public Collection<Package> getInstalledPackages() {
@@ -158,10 +163,18 @@ public class DPKGPackageManager implements PackageManager {
     }
 
     /**
+     * Returns all installable packages
+     * @return all installable packages (installed=false)
+     */
+    public Collection<Package> getAllInstallablePackages() {
+        return packageManagerDatabase.getPackageRepository().findInstallablePackages();
+    }
+
+    /**
      * {@inheritDoc}
      */
     public Collection<Package> getInstallablePackagesWithoutInstalledOfSameVersion() {
-        Collection<Package> installablePackages = getInstallablePackages();
+        Collection<Package> installablePackages = getAllInstallablePackages();
         Collection<Package> installedPackages = getInstalledPackages();
         installablePackages.removeAll(installedPackages);
         return installablePackages;
@@ -309,7 +322,7 @@ public class DPKGPackageManager implements PackageManager {
     @Override
     public PackageManagerOperation createOperation() {
         return new DefaultPackageManagerOperation(
-                new PackageManagerOperationResolverImpl(this::getInstalledPackages, this::getInstallablePackages));
+                new PackageManagerOperationResolverImpl(this::getInstalledPackages, this::getAllInstallablePackages));
     }
 
     @Override

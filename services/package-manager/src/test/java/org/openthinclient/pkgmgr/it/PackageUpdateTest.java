@@ -72,7 +72,7 @@ public class PackageUpdateTest {
 
         installPackages(packageManager, packages);
 
-        final Package packageToUpdate = packageManager.getInstallablePackages().stream()
+        final Package packageToUpdate = packageManager.getAllInstallablePackages().stream()
                 .filter(pkg -> pkg.getName().equals("foo") && pkg.getVersion().equals(Version.parse("2.1-1")))
                 .findFirst().get();
 
@@ -140,7 +140,7 @@ public class PackageUpdateTest {
         assertVersion("bar2", "2.0-1");
         assertVersion("bar2-dev", "2.1-1"); // has wrong version-number (should be 2.0-1) in version.txt
 
-        final Package packageToUpdate = packageManager.getInstallablePackages().stream()
+        final Package packageToUpdate = packageManager.getAllInstallablePackages().stream()
                 .filter(pkg -> pkg.getName().equals("bas") && pkg.getVersion().equals(Version.parse("2.1-1")))
                 .findFirst().get();
 
@@ -172,7 +172,7 @@ public class PackageUpdateTest {
         installPackages(packageManager, packages);
 
         assertVersion("zonk", "2.0-1");
-        final Package packageToUpdate = packageManager.getInstallablePackages().stream()
+        final Package packageToUpdate = packageManager.getAllInstallablePackages().stream()
                 .filter(pkg -> pkg.getName().equals("zonk") && pkg.getVersion().equals(Version.parse("2.1-1")))
                 .findFirst().get();
 
@@ -202,7 +202,7 @@ public class PackageUpdateTest {
         installPackages(packageManager, packages);
 
         assertVersion("bar2", "2.0-1");
-        final Package packageToUpdate = packageManager.getInstallablePackages().stream()
+        final Package packageToUpdate = packageManager.getAllInstallablePackages().stream()
                 .filter(pkg -> pkg.getName().equals("bar2") && pkg.getVersion().equals(Version.parse("2.1-1")))
                 .findFirst().get();
 
